@@ -1,15 +1,320 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #282c34;
-  color: white;
+  background-color: black;
+  font-family: Amatic SC, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  width: 100%;
+  height: 80vh;
+}
+
+main {
+  margin: 2em auto;
+  padding: 80px 0;
+  width: 60%;
+  min-height: 700px;
+  background-color: #141314;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 1s;
+  box-shadow: inset 5px 5px 10px 3px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.main-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* DOOR DISPLAY */
+
+.door-zone {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;  
+}
+
+.door {
+  width: 10%;
+  min-width: 200px;
+  height: 500px;
+  box-shadow: 30px 0 50px rgba(0, 0, 0, 0.658);
+  z-index: 1;
+  background-color: #140e08;
+  background-image: repeating-linear-gradient(90deg, rgb(44, 30, 12), rgb(37, 24, 8) 1px, transparent 1px, transparent 7px);
+  background-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  border-top:#160b02 1px solid;
+  border-left:#160b02 1px solid;
+}
+
+.door-front{
+  background-color: #160b02;
+  width: 70%;
+  height: 190px;
+  border: 10px ridge #2e1803;
+  background-image: repeating-linear-gradient(223deg, rgba(17, 13, 5, 0.938), rgb(37, 29, 15) 1px, transparent 0px, transparent 2px);
+    background-size: 20px;
+}
+
+.door-knobA{
+  width: 20px;
+  height: 20px;
+  background-color: #443400;
+  border: 1px outset #443400;
+  position: absolute;
+  left: 10px;
+}
+
+.door-knobB{
+  width: 20px;
+  height: 20px;
+  background-color: #4e3c01;
+  border: 1px outset #443400;
+  position: absolute;
+  right: 10px;
+}
+
+.doorA {
+  box-shadow: -10px 0px 80px rgba(0, 0, 0, 0.87);
+}
+
+.door-knob-handle {
+  width: 18px;
+  height: 18px;
+  background-color: #46380b;
+  background-image: repeating-linear-gradient(36deg, rgba(133, 108, 24, 0.233), rgba(177, 147, 16, 0.336) 1px, transparent 0px, transparent 2px);
+  background-size: 12px;
+  border-radius: 50%;
+  position: relative;
+  left: -0.2px;
+  box-shadow: 2px 2px rgba(0,0,0,0.2) ;
+}
+
+/* ENTRANCE DISPLAY */
+
+.enter {
+  width: 18%;
+  min-width: 200px;
+  height: 500px;
+  cursor: pointer;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.enterA {
+  background: linear-gradient(90deg, rgba(0,0,0,1) 75%, rgb(20, 20, 20) 100%);
+  margin-right: 100px;  
+  box-shadow: inset 5px 5px 10px 10px rgba(0, 0, 0, 0.7);
+
+}
+
+.enterB {
+  background: linear-gradient(270deg, rgba(0,0,0,1) 75%, rgb(20, 20, 20) 100%);
+  box-shadow: inset 5px 5px 10px 10px rgba(0, 0, 0, 0.7);
+  
+}
+
+.enter:hover{
+  opacity: 0.7;
+}
+
+/* CHOICE TEXT DISPLAY */
+
+.enter h3{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  text-align: center;
+  transition: 1s;
+  user-select: none;
+}
+
+.enter:hover h3 {
+  color: #fff;
+  font-size: 30px;
+  animation: float 3s ease-in-out infinite;
+}
+
+
+/* DILEMMA / QUESTION DISPLAY */
+
+.dilemma {
+  color: #fff;
+  font-size: 60px;
+  text-shadow: 10px 1px 10px black;
+}
+
+/* MORAL DISPLAY */
+.moral {
+  width: 50%;
+  max-width: 400px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.342);
+  border: inset white 2px;
+  border-radius: 20px;
+  box-shadow: 10px 5px 15px black;
+}
+
+.moral-jauge {
+  width: 20%;
+  height: 20px;
+  background: linear-gradient(270deg, rgba(200,145,15,1) 0%, rgba(183,81,12,1) 28%, rgba(180,70,11,1) 42%, rgba(163,8,8,1) 100%);
+  border-radius: 20px;
+  transition: 1s;
+}
+
+
+
+/* START BUTTON DISPLAY */
+
+.start-button {
+  margin: auto;
+  width: 30%;
+  height: 100px;
+  font-size: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #070505;
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-family: Amatic SC, sans-serif;
+  font-size: 60px;
+  transition: 1s;
+  animation: float 2s ease-in-out infinite;
+}
+
+.start-button:hover {
+  color: rgb(107, 1, 1);
+  font-size: 50px;
+  box-shadow: inset 5px 5px 10px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* GAME OVER DISPLAY */
+
+.game-over {
+  position: absolute;
+  top: 0;
+  transition: 2s;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-over h1 {
+  color : #fff;
+  z-index: 3;
+  font-size: 100px;
+  transition: 1s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.game-over h1:hover {
+  color:  rgb(107, 1, 1);
+  text-shadow: 2px 2px 100px  rgb(107, 1, 1);
+}
+
+/* BLACK SCREEN DISPLAY */
+
+.black-screen {
+  position: absolute;
+  top: 0;
+  transition: 0.5s;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* NARRATION / DIALOG DISPLAY */
+
+.narrator {
+  margin: 2rem;
+  width: 70%;
+  max-width: 631px;
+  background-color: #07050575;
+  border-radius: 20px;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  
+}
+
+.dialog {
+  user-select: none;
+  text-align: center;
+  max-width: 421px;
+  max-height: 100px;
+  font-size: 210%;
+  color: #fff;
+  margin-right: 2rem;
+  transition: 1s;
+}
+
+.narrator ion-icon {
+  position: absolute;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  transition: 1s;
+  cursor: pointer; 
+  animation: float 1s ease-in-out infinite;  
+}
+
+
+/* ANIMATION DE FLOTTEMENT */
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(10px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+
+.entrance-asset {
+  position: absolute;
+  bottom: -7px;
+  transition: 1s;
+  scale: 0.97;
+  transform: translateX(10%);
+  opacity: 0.03;
+}
+
+.entrance-asset:hover {
+  transition: 0.5s;
+  opacity: 0.5;
+  scale: 0.99;
 }
